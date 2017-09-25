@@ -1,16 +1,5 @@
 /*
- Basic MQTT example
-
- This sketch demonstrates the basic capabilities of the library.
- It connects to an MQTT server then:
-  - publishes "hello world" to the topic "outTopic"
-  - subscribes to the topic "inTopic", printing out any messages
-    it receives. NB - it assumes the received payloads are strings not binary
-
- It will reconnect to the server if the connection is lost using a blocking
- reconnect function. See the 'mqtt_reconnect_nonblocking' example for how to
- achieve the same result without blocking the main loop.
- 
+  Copyright (c) 2017 zmstudio
 */
 
 #include <SPI.h>
@@ -48,12 +37,8 @@ void reconnect() {
     // Attempt to connect
     if (client.connect("f3f119","f3f119","b799c3")) {
       Serial.println("connected");
-      // Once connected, publish an announcement...
-//      client.publish("device/f3f119/property/temp","10.0");
-      //Serial.println("published");
-      // ... and resubscribe
       client.subscribe("device/f3f119/to/light");
-      //Serial.println("subscribe successfully");
+      Serial.println("subscribe successfully");
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
